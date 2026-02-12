@@ -1,0 +1,5 @@
+/* Intentionally minimal; most styles come from styled-components GlobalStyles */
+
+body {
+  margin: 0;
+}
