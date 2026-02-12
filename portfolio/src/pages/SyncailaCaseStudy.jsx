@@ -39,12 +39,23 @@ const DetailHero = styled.div`
   height: 340px;
 `;
 
+const DetailHeroImage = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const DetailHeroInner = styled.div`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   background: ${({ theme }) =>
     `linear-gradient(135deg, ${theme.colors.rustOchre}, ${theme.colors.goldenMustard})`};
-  opacity: 0.7;
+  opacity: ${({ $hasImage }) => ($hasImage ? 0.25 : 0.7)};
+  pointer-events: none;
 `;
 
 const Overview = styled.p`
@@ -977,10 +988,11 @@ const Disclaimer = styled.div`
   font-style: italic;
 `;
 
-export default function SyncailaCaseStudy() {
+export default function SyncailaCaseStudy({ project }) {
   const navigate = useNavigate();
   const theme = useTheme();
   const heroOffset = useParallax(0.18);
+  const coverImage = project?.coverImage;
 
   return (
     <PageWrap>
@@ -989,7 +1001,10 @@ export default function SyncailaCaseStudy() {
       </BackLink>
 
       <DetailHero $offset={heroOffset}>
-        <DetailHeroInner />
+        {coverImage && (
+          <DetailHeroImage src={coverImage} alt={project?.title ?? 'Syncaila'} />
+        )}
+        <DetailHeroInner $hasImage={Boolean(coverImage)} />
       </DetailHero>
 
       <Overview>

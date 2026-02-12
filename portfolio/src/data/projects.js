@@ -12,6 +12,7 @@ export const projects = [
     platform: 'Web · Mobile Web',
     shortDesc: 'Surfacing real-time doctor availability in search results.',
     coverColor: 'almondWash',
+    coverImage: `${process.env.PUBLIC_URL || ''}/assets/search-availability.png`,
 
     overview: `Finding a doctor should be simple — but for most patients, it isn't. When someone searches for a physician online, they typically find a name and a phone number, then must navigate to a separate portal, call an office, or check another website just to learn whether that doctor is available. This project addresses that friction head-on. As Lead UX Designer at a healthcare startup, I led the design of a feature that surfaces a doctor's real-time appointment availability directly alongside their name in search results — giving patients the information they need to book immediately, without leaving the page.`,
 
@@ -81,6 +82,7 @@ export const projects = [
     platform: 'Web (Admin Dashboard)',
     shortDesc: 'Designed a provider ranking system that empowers hospital admins to optimize patient search experiences.',
     coverColor: 'weatheredSand',
+    coverImage: `${process.env.PUBLIC_URL || ''}/assets/promotions.jpeg`,
 
     overview: `Hospital systems needed a way to surface the right providers to patients searching for specific specialties or clinical conditions. Rather than relying on rigid algorithmic sorting, I designed a flexible promotion system that puts ranking control directly in the hands of hospital admins who understand their providers' expertise and patient needs.
 
@@ -513,6 +515,7 @@ The technical architecture and design patterns established for Promotions became
     platform: 'Desktop (macOS/Windows)',
     shortDesc: 'A comprehensive redesign of Syncaila\'s multi-camera sync workflow into an intuitive, production-grade tool.',
     coverColor: 'almondWash',
+    coverImage: `${process.env.PUBLIC_URL || ''}/assets/syncaila.jpg`,
     customLayout: 'syncaila',
   },
 ];

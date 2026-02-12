@@ -210,7 +210,6 @@ const WorkStrip = styled.div`
   grid-auto-flow: column;
   grid-auto-columns: minmax(260px, 1fr);
   gap: ${({ theme }) => theme.spacing.lg};
-  overflow-x: auto;
   padding-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
@@ -235,15 +234,23 @@ const CardShell = styled.article.attrs(() => ({
   }
 `;
 
-const CardMedia = styled.div`
+const CardMediaWrap = styled.div`
   border-radius: 12px;
   height: 180px;
+  overflow: hidden;
   background: ${({ theme, $tone }) =>
     $tone === 'almondWash'
       ? theme.colors.almondWash
       : $tone === 'softParchment'
       ? theme.colors.softParchment
       : theme.colors.weatheredSand};
+`;
+
+const CardMedia = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const CardTitle = styled.h2`
@@ -444,7 +451,11 @@ export default function Home() {
               onMouseLeave={resetCardTilt}
               onClick={() => navigate(`/work/${project.slug}`)}
             >
-              <CardMedia $tone={project.coverColor} />
+              <CardMediaWrap $tone={project.coverColor}>
+              {project.coverImage && (
+                <CardMedia src={project.coverImage} alt={project.title} />
+              )}
+            </CardMediaWrap>
               <div>
                 <CardTitle>{project.title}</CardTitle>
                 <Tag>{project.category}</Tag>
@@ -464,8 +475,7 @@ export default function Home() {
           <QuoteInner>
             <Rule />
             <QuoteText>
-              &ldquo;My work lives in the quiet hinge moments—the small decisions that make
-              a product feel like it was always meant to be there.&rdquo;
+              I build and design systems that understand how people think, decide, and feel. By combining technical depth with behavioral insight, I create products that are intuitive, intentional, and built to last.
             </QuoteText>
             <Rule />
           </QuoteInner>

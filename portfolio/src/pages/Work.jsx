@@ -56,15 +56,23 @@ const Card = styled.article.attrs(() => ({
   }
 `;
 
-const CardMedia = styled.div`
+const CardMediaWrap = styled.div`
   border-radius: 12px;
   aspect-ratio: 16 / 9;
+  overflow: hidden;
   background: ${({ theme, $tone }) =>
     $tone === 'almondWash'
       ? theme.colors.almondWash
       : $tone === 'softParchment'
       ? theme.colors.softParchment
       : theme.colors.weatheredSand};
+`;
+
+const CardMedia = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const CardTitle = styled.h2`
@@ -102,17 +110,25 @@ const DetailHero = styled.div`
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.almondWash};
   transform: translateY(${({ $offset }) => $offset}px);
   height: 340px;
 `;
 
-const DetailHeroInner = styled.div`
+const DetailHeroImage = styled.img`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background: ${({ theme }) =>
-    `linear-gradient(135deg, ${theme.colors.rustOchre}, ${theme.colors.goldenMustard})`};
-  opacity: 0.7;
+  object-fit: cover;
+`;
+
+const DetailHeroInner = styled.div`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: ${({ $hasImage }) => ($hasImage ? 0.25 : 0.7)};
+  pointer-events: none;
 `;
 
 const DetailStatsStrip = styled.div`
@@ -615,6 +631,8 @@ function WorkGrid() {
     card.style.transform =
       'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)';
   };
+  
+  
 
   return (
     <PageWrapper>
@@ -622,13 +640,13 @@ function WorkGrid() {
         <h3>Case Studies</h3>
         <h1>Work that traces the journey from question to quietly confident product.</h1>
         <p>
-          A collection of end-to-end case studies across wellness, marketplaces, and
-          fintech—each rooted in research and tuned to the textures of everyday use.
+          A collection of end-to-end case studies across healthtech and video production — each rooted in research and tuned to the textures of everyday use.
         </p>
       </Header>
 
       <Grid ref={ref}>
-        {projects.map((project, index) => (
+        {projects.map((project, index) => {
+          return (
           <Card
             key={project.id}
             className={`reveal ${inView ? 'reveal--visible' : ''}`}
@@ -639,7 +657,11 @@ function WorkGrid() {
             onMouseLeave={resetCardTilt}
             onClick={() => navigate(`/work/${project.slug}`)}
           >
-            <CardMedia $tone={project.coverColor} />
+            <CardMediaWrap>
+              {project.coverImage && (
+                <CardMedia src={project.coverImage} alt={project.title} />
+              )}
+            </CardMediaWrap>
             <div>
               <CardTitle>{project.title}</CardTitle>
               <p>{project.shortDesc}</p>
@@ -653,7 +675,7 @@ function WorkGrid() {
               </TagRow>
             </CardMeta>
           </Card>
-        ))}
+        )})}
       </Grid>
     </PageWrapper>
   );
@@ -681,7 +703,10 @@ function WorkDetail({ project }) {
       <DetailLayout>
         <div>
           <DetailHero $offset={heroOffset}>
-            <DetailHeroInner />
+            {project.coverImage && (
+              <DetailHeroImage src={project.coverImage} alt={project.title} />
+            )}
+            <DetailHeroInner $hasImage={Boolean(project.coverImage)} />
           </DetailHero>
 
           {/* Overview */}
@@ -1221,7 +1246,7 @@ export default function Work() {
     }
 
     if (project.customLayout === 'syncaila') {
-      return <SyncailaCaseStudy />;
+      return <SyncailaCaseStudy project={project} />;
     }
 
     return <WorkDetail project={project} />;
