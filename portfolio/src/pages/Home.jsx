@@ -89,23 +89,20 @@ const ScrollIndicator = styled.div`
   bottom: ${({ theme }) => theme.spacing.lg};
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
-  opacity: ${({ $revealed }) => ($revealed ? 0 : 1)};
-  transition: opacity 0.4s ease-out;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+  opacity: 1;
   pointer-events: none;
-
-  @media (prefers-reduced-motion: reduce) {
-    transition: none;
-    opacity: 0;
-  }
 `;
 
-const ScrollIndicatorText = styled.span`
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+const ScrollDownIcon = styled.svg`
+  width: 28px;
+  height: 28px;
   color: ${({ theme }) => theme.colors.linenCream};
-  opacity: 0.9;
+  opacity: 0.95;
 `;
 
 const HeroEyebrow = styled.h3`
@@ -428,7 +425,9 @@ export default function Home() {
           </HeroContent>
         </HeroContentSection>
         <ScrollIndicator $revealed={revealed}>
-          <ScrollIndicatorText>Scroll</ScrollIndicatorText>
+          <ScrollDownIcon viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M6 9l6 6 6-6" />
+          </ScrollDownIcon>
         </ScrollIndicator>
       </HeroSection>
 

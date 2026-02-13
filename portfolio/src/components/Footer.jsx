@@ -3,7 +3,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const FooterWrapper = styled.footer`
   background: ${({ theme }) => theme.colors.oxideUmber};
@@ -50,12 +49,6 @@ const Small = styled.p`
   opacity: 0.85;
 `;
 
-const FooterLink = styled(Link)`
-  font-size: 0.85rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-`;
-
 export default function Footer() {
   return (
     <FooterWrapper>
@@ -65,7 +58,6 @@ export default function Footer() {
           <Small>© {new Date().getFullYear()} Rena Hahn. All rights reserved.</Small>
         </FooterLeft>
         <FooterRight>
-          <FooterLink to="/work">View Selected Work</FooterLink>
           <Small>Made with love.</Small>
         </FooterRight>
       </FooterInner>
