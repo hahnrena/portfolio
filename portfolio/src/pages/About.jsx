@@ -189,7 +189,6 @@ const LOYAL_BULLETS = [
   'Re-architected apps for full container-responsiveness by replacing all media queries with custom responsive width functions, leveraging React Hooks and the Context API to meet internal scalability goals.',
   'Spearheaded the Search Profile Settings initiative end-to-end — breaking the concept into user stories, shipping behind feature flags, and delivering 2 days ahead of schedule across 134 live hospital sites.',
   'Drove the full technical vision for Loyal\'s Promotions feature, designing Redux state and data flow diagrams and aligning the team on how reusable components are connected to bring the feature to life.',
-  
 ];
 
 const POCAS_BULLETS = [

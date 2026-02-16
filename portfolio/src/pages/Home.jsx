@@ -411,7 +411,7 @@ export default function Home() {
             </HeroHeadline>
             <HeroSubcopy>
               I balance technical depth and aesthetic sensibility.
-              <p>This multidisciplinary approach allows me to craft products that feel familiar yet new.</p>
+              This multidisciplinary approach allows me to craft products that feel familiar yet new.
             </HeroSubcopy>
             <HeroMeta>
               <MagneticButton
@@ -460,7 +460,7 @@ export default function Home() {
                 <Tag>{project.category}</Tag>
               </div>
               <CardMetaRow>
-                
+                <span>{project.year}</span>
                 <span>{project.shortDesc}</span>
               </CardMetaRow>
             </CardShell>
