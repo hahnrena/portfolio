@@ -164,21 +164,17 @@ const ToolItem = styled.span`
 
 const SKILLS = [
   'HTML/CSS/styled-component',
-  'React Native',
-  'Cypress',
-  'Javascript ES6',
-  'Typescript',
-  'SQL (PostgreSQL)',
-  'CircleCI',
-  'NodeJS',
-  'ExpressJS',
+  'Principle',
+  'Claude AI',
+  'Javascript ES6, Typescript',
+  'PostgreSQL',
+  'Google AI Studio',
+  'Adobe Photoshop/Affinity',
   'Storybook',
-  'AWS S3, Lambda',
-  'ReactJS',
-  'Redux',
-  'RTK/RTK Query',
-  'Figma',
-  'Shopify',
+  'Weavy AI',
+  'ReactJS, React Native',
+  'Figma/Figma Make',
+  'DaVinci Resolve',
 ];
 
 const LOYAL_BULLETS = [
